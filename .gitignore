@@ -1,3 +1,11 @@
 .DS_Store
 Thumbs.db
 *.log
+node_modules/
+memoir-data.json
+export.html
+cdp-extract.js
+extract-db.js
+split-media.js
+package.json
+package-lock.json

@@ -1021,6 +1021,20 @@ body {
 
   async function init() {
     await load();
+    // Preload from JSON if empty
+    if (!categories.length && !memories.length) {
+      try {
+        var resp = await fetch('memoir-data-slim.json');
+        if (resp.ok) {
+          var preload = await resp.json();
+          categories = preload.categories || [];
+          memories = preload.memories || [];
+          hero = preload.hero || hero;
+          bgmSrc = preload.bgmSrc || '';
+          save();
+        }
+      } catch (e) {}
+    }
     autoTranslateCatNames();
     applyHero(); renderStrips();
     if (bgmSrc) { var a = $('bgm-audio'); a.src = bgmSrc; a.crossOrigin = 'anonymous'; }
